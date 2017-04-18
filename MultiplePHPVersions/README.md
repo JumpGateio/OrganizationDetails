@@ -9,7 +9,7 @@ The purpose of these files is to handle running multiple versions of PHP in your
 
 # Adding the command
 
-Copy the contents of `toggle_php_versions` and place it in a file in your user's bin directory.
+Copy the contents of [`toggle_php_versions`](toggl_php_versions) and place it in a file in your user's bin directory.
 
 ```bash
 vim ~/bin/toggle_php_versions

@@ -1,0 +1,30 @@
+#!/bin/bash
+phpversion="$(php --version | tail -r | tail -n 1 | cut -d " " -f 2 | cut -c 1,3)"
+
+echo "Uninstalling php $phpversion"
+sudo brew services stop php$phpversion || brew services stop php$phpversion
+brew unlink php$phpversion
+
+echo ""
+
+if [ $phpversion -lt 60 ]
+then
+echo 'Installing PHP 71'
+
+brew link php71
+
+else
+echo 'Installing PHP 56'
+brew link php56
+fi
+
+echo ""
+
+phpVersionNew="$(php --version | tail -r | tail -n 1 | cut -d " " -f 2 | cut -c 1,3)"
+
+echo "Restarting PHP"
+sudo brew services restart php$phpVersionNew
+
+echo ""
+
+echo "PHP Version changed from $phpversion to $phpVersionNew"
